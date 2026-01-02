@@ -1,3 +1,5 @@
+import { CopyButton } from "../CopyButton";
+
 interface CodeOutputProps {
   htmlCode: string;
   cssCode: string;
@@ -11,18 +13,24 @@ export const CodeOutput = ({htmlCode, cssCode}: CodeOutputProps) => {
     >
       <div className="bg-gray-500/20 border border-solid border-purple-800/50 rounded-2xl p-6 w-3/6 not-md:w-full">
         <h3 className="text-2xl mb-4 text-center">Código HTML</h3>
-        <pre
+        <div className="relative">
+          {htmlCode && <CopyButton text={htmlCode}/>}
+          <pre
           id="html-code"
-          className="bg-neutral-950  text-teal-300 rounded-lg p-4 text-[1rem] whitespace-pre-wrap wrap-break-word"
-        >{htmlCode || ''}</pre>
+          className="bg-neutral-950 pt-15 text-teal-300 rounded-lg p-4 text-[1rem] whitespace-pre-wrap wrap-break-word"
+        >{htmlCode}</pre>
+        </div>
       </div>
 
       <div className="bg-gray-500/20 border border-solid border-purple-800/50 rounded-2xl p-6 w-3/6 not-md:w-full">
         <h3 className="text-2xl mb-4 text-center">Código CSS</h3>
+        <div className="relative">
+          {cssCode && <CopyButton text={cssCode}/>}
         <pre
           id="css-code"
-          className="bg-neutral-950  text-teal-300 rounded-lg p-4 text-[1rem] whitespace-pre-wrap wrap-break-word"
+          className="bg-neutral-950 pt-15 text-teal-300 rounded-lg p-4 text-[1rem] whitespace-pre-wrap wrap-break-word"
         >{cssCode || ''}</pre>
+        </div>
       </div>
     </section>
   );
