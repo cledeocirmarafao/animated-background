@@ -33,8 +33,8 @@ function App() {
       />
       <Main onBackgroundGenerated={handleBackgroundGenerated}>
         <CodeOutput htmlCode={backgroundHtml} cssCode={backgroundCss}/>
-      </Main>
       <Preview />
+      </Main>
     </>
   );
 }
