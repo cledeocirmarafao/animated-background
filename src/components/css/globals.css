@@ -2,9 +2,11 @@
 
 @layer base {
   body {
-  background: rgb(15, 19, 26);
+  background-color: rgb(15, 19, 26);
   color: rgb(255, 255, 255);
-  background: url(../images/bg.JPG);
+  background-image: url(../images/bg.JPG);
+  background-size: cover;
+  background-attachment: fixed;
   font-family: "Roboto Mono", monospace;
   line-height: 1.4;
   padding: 3.2rem 2.4rem;
