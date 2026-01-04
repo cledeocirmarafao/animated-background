@@ -26,7 +26,7 @@ function App() {
     )}
 
       <Header
-        title={"Magic Background"}
+        title={"Animated Background"}
         subtitle={
           " Transform your ideas into incredible backgrounds with the power of AI.Describe what you imagine and watch the magic happen."
         }

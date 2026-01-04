@@ -82,7 +82,7 @@ export const Main = ({ children, onBackgroundGenerated }: MainProps) => {
             id="generate-button"
             disabled={isLoading || !description.trim()}
           >
-            {isLoading ? "Generating..." : "Genarate Magic Background"}
+            {isLoading ? "Generating..." : "Generate Animated Background"}
           </button>
         </form>
       </section>
