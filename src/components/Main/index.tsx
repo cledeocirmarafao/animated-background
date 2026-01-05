@@ -1,4 +1,9 @@
-import { type ChangeEvent, type FormEvent, useState } from "react";
+import {
+  type ChangeEvent,
+  type FormEvent,
+  type KeyboardEvent,
+  useState,
+} from "react";
 
 interface MainProps {
   children: React.ReactNode;
@@ -18,6 +23,9 @@ export const Main = ({ children, onBackgroundGenerated }: MainProps) => {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    if (isLoading || !description.trim()) return;
+
     setIsLoading(true);
     setError(null);
 
@@ -27,11 +35,12 @@ export const Main = ({ children, onBackgroundGenerated }: MainProps) => {
         {
           method: "POST",
           headers: {
-            "Content-Type": "appLication/json",
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({ description }),
         }
       );
+
 
       if (!response.ok) {
         throw new Error("Failed to generate background");
@@ -58,6 +67,19 @@ export const Main = ({ children, onBackgroundGenerated }: MainProps) => {
     setDescription(e.target.value);
   };
 
+  const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+
+      if (description.trim() && !isLoading) {
+        const form = e.currentTarget.form;
+        if (form) {
+          form.requestSubmit();
+        }
+      }
+    }
+  };
+
   return (
     <main className="max-w-5xl m-auto z-10 relative">
       <section className="border border-solid border-purple-800/50 rounded-2xl p-8 mb-8">
@@ -70,19 +92,22 @@ export const Main = ({ children, onBackgroundGenerated }: MainProps) => {
             className="bg-white/5 text-white w-full min-h-32 p-4 border border-solid border-purple-600/50 rounded-lg mb-5 resize-none text-[1rem] focus:outline-none focus:border-purple-500/50 placeholder:text-neutral-300/70"
             id="description"
             onChange={handleChange}
+            onKeyDown={handleKeyDown}
             value={description}
             disabled={isLoading}
-            placeholder="Example: A smooth blue gradient that goes from light blue to dark blue."
+            placeholder="Example: A smooth blue gradient that goes from light blue to dark blue.
+
+💡 Tip: Press Enter to search, Shift+Enter for new line"
             rows={5}
           ></textarea>
           {error && <p className="text-red-600/50 mt-2 text-sm">{error}</p>}
           <button
             type="submit"
-            className="w-full py-4 px-8 bg-[linear-gradient(90deg,#3F1569_0%,#D47800_50%,#13785A_100%)] text-white border-none rounded-lg text-[1.2rem] font-semibold cursor-pointer transition-all duration-300 ease-in-out hover:-translate-y-1"
+            className="w-full py-4 px-8 bg-[linear-gradient(90deg,#3F1569_0%,#D47800_50%,#13785A_100%)] text-white border-none rounded-lg text-[1.2rem] font-semibold cursor-pointer transition-all duration-300 ease-in-out hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed"
             id="generate-button"
             disabled={isLoading || !description.trim()}
           >
-            {isLoading ? "Generating..." : "Generate Animated Background"}
+            {isLoading ? "Generating..." : "Generate Magic Background"}
           </button>
         </form>
       </section>
