@@ -18,7 +18,7 @@ O Animated Background é uma aplicação web interativa que utiliza Inteligênci
 - Contato
 - Autor
 
-## ☝️ Sobre o Projeto
+## ☝️ Sobre o Projeto <a id="sobre-o-projeto"></a>
 
 **O Problema** 😬
 
@@ -65,6 +65,8 @@ _Ao finalizar, todos os controles voltam ao estado normal_
 
 **Via Teclado**:
 
+- Search dispara com a tecla Enter
+- Quebra de linha com Shift + Enter
 - Botão desabilitado quando textarea está vazio ou contém apenas espaços
 - Validação em tempo real da entrada do usuário
 
