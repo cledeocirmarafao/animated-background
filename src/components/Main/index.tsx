@@ -31,7 +31,7 @@ export const Main = ({ children, onBackgroundGenerated }: MainProps) => {
 
     try {
       const response = await fetch(
-        "https://cledeocirmarafao.app.n8n.cloud/webhook/animated-background",
+        "https://cmds.app.n8n.cloud/webhook/animated-background",
         {
           method: "POST",
           headers: {
